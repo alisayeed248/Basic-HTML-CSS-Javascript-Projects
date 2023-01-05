@@ -1,0 +1,95 @@
+/* Changed body to * so that we can apply border-boxing to everything and not just body (necessary for dealing with hovering issue) */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: lightskyblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar {
+  background: black;
+  color: lightgray;
+  width: 450px;
+  height: 520px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.month {
+  width: 100%;
+  height: 120px;
+  background-color: lightseagreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* Ensures top left and top right are rounded, but not bottom left and right*/
+  border-radius: 10px 10px 0 0;
+}
+
+.month h1 {
+  font-size: 30px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/* default font-size is 16px */
+.month p {
+  font-size: 16px;
+}
+
+/* Flex display brings them next to each other */
+.weekdays {
+  width: 100%;
+  height: 50px;
+  display: flex;
+}
+
+.weekdays div {
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  width: 100%;
+  /* We set width to 100% so we can use justify-content (?) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Flex puts them next to each other, but since we have 30 days we include flex-wrap */
+.days {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2px;
+}
+
+.days div {
+  font-size: 14px;
+  margin: 3px;
+  width: 57.5px; /* Trial and error, space between each container */
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* If you don't change border-box value, moving the cursor along the divs will cause them to shift */
+.days div:hover:not(.empty) {
+  /* :not(.empty) allows us to ensure hovering doesn't work on empty divs*/
+  border: 2px solid gray;
+  cursor: pointer;
+}
+
+.today {
+  background-color: lightseagreen;
+}
